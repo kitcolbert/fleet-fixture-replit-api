@@ -21,9 +21,9 @@ import type {
 
 import type {
   Book,
-  CreateBookBody,
+  BookList,
   HealthStatus,
-  ListBooksResponse
+  NewBook
 } from './api.schemas';
 
 import { customFetch } from '../custom-fetch';
@@ -143,9 +143,9 @@ export const getListBooksUrl = () => {
  * Returns all books in the bookstore catalog.
  * @summary List books
  */
-export const listBooks = async ( options?: Parameters<typeof customFetch>[1]): Promise<ListBooksResponse> => {
+export const listBooks = async ( options?: Parameters<typeof customFetch>[1]): Promise<BookList> => {
 
-  return customFetch<ListBooksResponse>(getListBooksUrl(),
+  return customFetch<BookList>(getListBooksUrl(),
   {
     ...options,
     method: 'GET'
@@ -221,7 +221,7 @@ export const getCreateBookUrl = () => {
  * Adds a book to the bookstore catalog.
  * @summary Add a book
  */
-export const createBook = async (createBookBody: CreateBookBody, options?: Parameters<typeof customFetch>[1]): Promise<Book> => {
+export const createBook = async (newBook: NewBook, options?: Parameters<typeof customFetch>[1]): Promise<Book> => {
 
     const getHeaders = (h?: NonNullable<RequestInit['headers']>): Record<string, string | readonly string[]> => {
     if (!h) return {};
@@ -242,7 +242,7 @@ return customFetch<Book>(getCreateBookUrl(),
     ...options,
     method: 'POST',
     headers: { 'Content-Type': 'application/json', ...getHeaders(options?.headers) },
-    body: JSON.stringify(createBookBody)
+    body: JSON.stringify(newBook)
   }
 );}
 
@@ -280,9 +280,9 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type CreateBookMutationResult = NonNullable<Awaited<ReturnType<typeof createBook>>>
-    export type CreateBookMutationBody = BodyType<CreateBookBody>
+    export type CreateBookMutationBody = BodyType<NewBook>
     export type CreateBookMutationError = ErrorType<void>
-    export type CreateBookMutationVariables = {data: BodyType<CreateBookBody>}
+    export type CreateBookMutationVariables = {data: BodyType<NewBook>}
 
     /**
  * @summary Add a book

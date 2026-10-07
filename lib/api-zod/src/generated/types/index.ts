@@ -7,6 +7,6 @@
  */
 
 export * from './book';
-export * from './createBookBody';
+export * from './bookList';
 export * from './healthStatus';
-export * from './listBooksResponse';
+export * from './newBook';

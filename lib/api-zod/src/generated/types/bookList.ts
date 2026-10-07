@@ -7,4 +7,4 @@
  */
 import type { Book } from './book';
 
-export type ListBooksResponse = Book[];
+export type BookList = Book[];

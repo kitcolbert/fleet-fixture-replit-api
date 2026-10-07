@@ -1,10 +1,10 @@
-# [Project name]
+# Bookstore API
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A small Express REST API and plain HTML catalog for the fictional Paper & Spine bookstore.
 
 ## Run & Operate
 
-- `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
+- `pnpm --filter @workspace/api-server run dev` — run the API server (the managed workflow supplies PORT)
 - `pnpm run typecheck` — full typecheck across all packages
 - `pnpm run build` — typecheck + build all packages
 - `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
@@ -22,15 +22,27 @@ _Replace the heading above with the project's name, and this line with one sente
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `lib/api-spec/openapi.yaml` — API contract; regenerate after changes
+- `lib/db/src/schema/books.ts` — database table
+- `artifacts/api-server/src/routes/books.ts` — list, add, and delete handlers
+- `artifacts/api-server/src/pages/bookstore.ts` — standalone HTML/CSS/JS page served by Express
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- Use the existing PostgreSQL database instead of introducing SQLite alongside it.
+- Keep the UI plain HTML served by Express to match the small scope.
+- Sample catalog rows are inserted once during setup, never recreated on startup after a user deletes them.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+The HTML page at `/` lists the catalog and allows adding and deleting books. It calls the same REST API as external clients:
+
+- `GET /api/books` → 200 with an array of `{ id, title, author }`
+- `POST /api/books` → 201 with a book; JSON body `{ "title": "...", "author": "..." }`
+- `DELETE /api/books/:id` → 204; 404 when the book does not exist
+
+Invalid input returns 400 with `{ "error": "..." }`. Books persist across service restarts.
+This fictional demo has no authentication: anyone who can access it can modify the catalog.
 
 ## User preferences
 

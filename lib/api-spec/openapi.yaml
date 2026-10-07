@@ -38,7 +38,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ListBooksResponse"
+                $ref: "#/components/schemas/BookList"
     post:
       operationId: createBook
       tags: [books]
@@ -49,7 +49,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CreateBookBody"
+              $ref: "#/components/schemas/NewBook"
       responses:
         "201":
           description: Book added
@@ -101,11 +101,11 @@ components:
         - id
         - title
         - author
-    ListBooksResponse:
+    BookList:
       type: array
       items:
         $ref: "#/components/schemas/Book"
-    CreateBookBody:
+    NewBook:
       type: object
       properties:
         title:

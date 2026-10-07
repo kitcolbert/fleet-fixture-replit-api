@@ -1,0 +1,1 @@
+- [Codegen export collisions](codegen-export-collisions.md) — use distinct contract schema names to avoid collisions with operation-derived validation exports.

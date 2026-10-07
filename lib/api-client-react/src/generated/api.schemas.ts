@@ -16,9 +16,9 @@ export interface Book {
   author: string;
 }
 
-export type ListBooksResponse = Book[];
+export type BookList = Book[];
 
-export interface CreateBookBody {
+export interface NewBook {
   /**
      * @minLength 1
      * @maxLength 200
