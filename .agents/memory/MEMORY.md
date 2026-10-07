@@ -1,1 +1,2 @@
 - [Codegen export collisions](codegen-export-collisions.md) — use distinct contract schema names to avoid collisions with operation-derived validation exports.
+- [Preview registration](preview-registration.md) — a working HTML URL in an API artifact is not enough for the Preview pane; it needs a web artifact.

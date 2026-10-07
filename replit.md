@@ -26,11 +26,12 @@ A small Express REST API and plain HTML catalog for the fictional Paper & Spine 
 - `lib/db/src/schema/books.ts` — database table
 - `artifacts/api-server/src/routes/books.ts` — list, add, and delete handlers
 - `artifacts/api-server/src/pages/bookstore.ts` — standalone HTML/CSS/JS page served by Express
+- `artifacts/bookstore/index.html` — plain HTML entry for the web preview
 
 ## Architecture decisions
 
 - Use the existing PostgreSQL database instead of introducing SQLite alongside it.
-- Keep the UI plain HTML served by Express to match the small scope.
+- Keep the UI plain HTML to match the small scope; register it as a web artifact so the Preview pane can display it.
 - Sample catalog rows are inserted once during setup, never recreated on startup after a user deletes them.
 
 ## Product
