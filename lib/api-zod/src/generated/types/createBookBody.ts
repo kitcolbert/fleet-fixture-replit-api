@@ -5,18 +5,6 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
-export interface HealthStatus {
-  status: string;
-}
-
-export interface Book {
-  /** @minimum 1 */
-  id: number;
-  title: string;
-  author: string;
-}
-
-export type ListBooksResponse = Book[];
 
 export interface CreateBookBody {
   /**
@@ -30,4 +18,3 @@ export interface CreateBookBody {
      */
   author: string;
 }
-
